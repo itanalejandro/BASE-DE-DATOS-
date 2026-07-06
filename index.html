@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CellRepair - Iniciar Sesión</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: #f0f2f5; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+        .container { display: flex; width: 100%; max-width: 1200px; background: white; box-shadow: 0 20px 40px rgba(0,0,0,0.1); border-radius: 30px; overflow: hidden; }
+        .form-column { flex: 1; background: #b3e0ff; display: flex; align-items: center; justify-content: center; padding: 40px; }
+        .image-column { flex: 1; background: #ffffff; display: flex; align-items: center; justify-content: center; padding: 40px; }
+        .phone-image { width: 100%; max-width: 350px; height: auto; border-radius: 30px; object-fit: contain; }
+        .centered-content { width: 100%; max-width: 450px; }
+        .page-title { font-size: 2rem; font-weight: 700; color: #003366; margin-bottom: 30px; text-align: center; }
+        .page-title i { margin-right: 10px; color: #4facfe; }
+        .form-container { background: white; padding: 40px; border-radius: 30px; box-shadow: 0 20px 40px rgba(0, 51, 102, 0.2); }
+        .form-title { font-size: 1.8rem; font-weight: 600; color: #003366; margin-bottom: 30px; text-align: center; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .input-group { margin-bottom: 18px; }
+        .input-group label { display: block; margin-bottom: 6px; font-weight: 600; color: #003366; font-size: 0.9rem; }
+        .input-group label i { margin-right: 6px; color: #4facfe; }
+        .input-group input { width: 100%; padding: 12px 16px; border: 2px solid #b3e0ff; border-radius: 12px; font-size: 1rem; transition: all 0.3s; outline: none; background: #fafafa; }
+        .input-group input:focus { border-color: #4facfe; box-shadow: 0 0 0 3px rgba(79, 172, 254, 0.2); background: white; }
+        .input-group-full { grid-column: span 2; }
+        .forgot-password { text-align: right; margin-bottom: 20px; }
+        .forgot-password a { color: #003366; text-decoration: none; font-size: 0.9rem; }
+        .btn-primary { width: 100%; padding: 14px; background: #003366; color: white; border: none; border-radius: 12px; font-size: 1.1rem; font-weight: 600; cursor: pointer; transition: all 0.3s; }
+        .btn-primary:hover { background: #002244; transform: translateY(-2px); }
+        .btn-primary i { margin-right: 8px; }
+        .switch-auth { text-align: center; margin-top: 20px; color: #003366; }
+        .switch-auth a { color: #003366; text-decoration: none; font-weight: 700; }
+        @media (max-width: 800px) {
+            .container { flex-direction: column; margin: 20px; border-radius: 20px; }
+            .image-column { display: none; }
+            .form-row { grid-template-columns: 1fr; }
+            .input-group-full { grid-column: span 1; }
+            .form-container { padding: 25px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-column">
+            <div class="centered-content">
+                <h1 class="page-title"><i class="fas fa-mobile-alt"></i>CellRepair</h1>
+                
+                <div class="form-container">
+                    <h2 class="form-title">Iniciar Sesión</h2>
+                    
+                    <form action="login.php" method="POST">
+                        <div class="form-row">
+                            <div class="input-group">
+                                <label><i class="fas fa-user"></i> Nombre</label>
+                                <input type="text" name="Nombre" placeholder="Tu nombre" required>
+                            </div>
+                            <div class="input-group">
+                                <label><i class="fas fa-user"></i> Apellido Paterno</label>
+                                <input type="text" name="Apellido_pat" placeholder="Apellido paterno" required>
+                            </div>
+                        </div>
+                        
+                        <div class="input-group input-group-full">
+                            <label><i class="fas fa-envelope"></i> Correo electrónico</label>
+                            <input type="email" name="Correo" placeholder="tu@email.com" required>
+                        </div>
+                        
+                        <div class="input-group input-group-full">
+                            <label><i class="fas fa-lock"></i> Contraseña</label>
+                            <input type="password" name="Password" placeholder="••••••••" required>
+                        </div>
+                        
+                        <button type="submit" class="btn-primary">
+                            <i class="fas fa-sign-in-alt"></i> Iniciar Sesión
+                        </button>
+                        
+                        <p class="switch-auth">
+                            ¿Aún no tienes cuenta? <a href="registrofinal.php">Registrarse</a>
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <div class="image-column">
+            <img src="cellrepair.png" alt="CellRepair" class="phone-image" onerror="this.src='https://via.placeholder.com/350x400?text=CellRepair'">
+        </div>
+    </div>
+</body>
+</html>
