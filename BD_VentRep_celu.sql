@@ -306,24 +306,15 @@ END //
 DELIMITER ;
 
 -- Trigger para GARANTÍA DE SERVICIO
+ALTER TABLE Garantia_servicio ADD UNIQUE KEY unique_orden (Id_orden);
 DELIMITER //
 CREATE TRIGGER generar_garantia_servicio
 AFTER UPDATE ON Ordenes_reparacion
 FOR EACH ROW
 BEGIN
-    DECLARE existe INT DEFAULT 0;
-    
-    -- Solo si el NUEVO estado es 'Completada' o 'Entregada'
-    IF NEW.Status = 'Completada' OR NEW.Status = 'Entregada' THEN
-        
-        -- Verificar si YA EXISTE una garantía para esta orden
-        SELECT COUNT(*) INTO existe FROM Garantia_servicio WHERE Id_orden = NEW.Id_orden;
-        
-        -- Si NO existe, insertar
-        IF existe = 0 THEN
-            INSERT INTO Garantia_servicio (Id_orden, Id_cliente, Id_servicio, Id_usuario, Fecha_entrega)
-            VALUES (NEW.Id_orden, NEW.Id_cliente, NEW.Id_servicio, NEW.Id_usuario, NOW());
-        END IF;
+    IF NEW.Status IN ('Completada', 'Entregada') THEN
+        INSERT IGNORE INTO Garantia_servicio (Id_orden, Id_cliente, Id_servicio, Id_usuario, Fecha_entrega)
+        VALUES (NEW.Id_orden, NEW.Id_cliente, NEW.Id_servicio, NEW.Id_usuario, NOW());
     END IF;
 END //
 DELIMITER ;
